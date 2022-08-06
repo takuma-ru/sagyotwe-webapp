@@ -11,7 +11,7 @@
   },
   "hosting": {
     "site": "sagyo-twe",
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
