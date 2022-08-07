@@ -1,7 +1,6 @@
 import {
   getAuth,
   signInWithPopup,
-  GoogleAuthProvider,
   signOut,
   setPersistence,
   browserLocalPersistence,
@@ -12,8 +11,8 @@ import { userProfileDataInterface } from '~/store/userProfileStore'
 
 /**
   Firebase Authentication 関連関数群
-**/
-export default function auth () {
+  **/
+export default function useAuth () {
   const router = useRouter()
   const twitterProvider = new TwitterAuthProvider()
   const auth = getAuth()
@@ -21,11 +20,11 @@ export default function auth () {
   /**
    * 現在ログイン中のユーザー情報
    */
-  const nowUser = reactive<userProfileDataInterface>({
-    name: undefined,
-    email: undefined,
-    uid: undefined,
-    photoURL: undefined
+  const loggedInUser = reactive<userProfileDataInterface>({
+    name: null,
+    email: null,
+    uid: null,
+    photoURL: null
   })
 
   /**
@@ -33,38 +32,38 @@ export default function auth () {
    */
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      nowUser.name = user.displayName
-      nowUser.email = user.email
-      nowUser.uid = user.uid
-      nowUser.photoURL = user.photoURL
+      loggedInUser.name = user.displayName
+      loggedInUser.email = user.email
+      loggedInUser.uid = user.uid
+      loggedInUser.photoURL = user.photoURL
     } else {
-      nowUser.name = null
-      nowUser.email = null
-      nowUser.uid = null
-      nowUser.photoURL = null
+      loggedInUser.name = null
+      loggedInUser.email = null
+      loggedInUser.uid = null
+      loggedInUser.photoURL = null
     }
   })
 
   /**
    * ログイン処理
-   * @param type
    */
   const trySignIn = () => {
     setPersistence(auth, browserLocalPersistence)
       .then(() => {
         return signInWithPopup(auth, twitterProvider).then((result) => {
-          // const credential = GoogleAuthProvider.credentialFromResult(result)
+          // const credential = TwitterAuthProvider.credentialFromResult(result)
           // const token = credential?.accessToken
           const user = result.user
-          nowUser.name = user.displayName
-          nowUser.email = user.email
-          nowUser.uid = user.uid
-          nowUser.photoURL = user.photoURL
+          loggedInUser.name = user.displayName
+          loggedInUser.email = user.email
+          loggedInUser.uid = user.uid
+          loggedInUser.photoURL = user.photoURL
+          console.log(loggedInUser)
         }).catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
           const email = error.email
-          const credential = GoogleAuthProvider.credentialFromError(error)
+          const credential = TwitterAuthProvider.credentialFromError(error)
           console.error('error code:', errorCode, 'error message:', errorMessage, 'your email:', email)
           console.error(credential)
         })
@@ -83,10 +82,10 @@ export default function auth () {
    */
   const trySignOut = () => {
     signOut(auth).then(() => {
-      nowUser.name = null
-      nowUser.email = null
-      nowUser.uid = null
-      nowUser.photoURL = null
+      loggedInUser.name = null
+      loggedInUser.email = null
+      loggedInUser.uid = null
+      loggedInUser.photoURL = null
       router.go(0)
     }).catch((error) => {
       console.log(error)
@@ -94,7 +93,7 @@ export default function auth () {
   }
 
   return {
-    nowUser: shallowReadonly(nowUser),
+    loggedInUser: readonly(loggedInUser),
 
     trySignIn,
     trySignOut

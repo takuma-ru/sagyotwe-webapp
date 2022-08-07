@@ -1,74 +1,85 @@
+import useAuth from '~~/composables/firebase/auth'
+
 /**
-  Webアプリ内で使うログイン中のユーザーデータ管理
+  現在ログイン中のユーザープロファイルデータストア
 **/
-
-import { InjectionKey } from 'nuxt/dist/app/compat/capi'
-import auth from '~/composables/firebase/useAuth'
-
 export interface userProfileDataInterface {
-  name?: string | null,
-  email?: string | null,
-  uid?: string | null,
-  photoURL?: string | null,
+  name: string | null,
+  email: string | null,
+  uid: string | null,
+  photoURL: string | null,
 }
 
 export const useUserProfileStore = () => {
-  /*
-    state
+  /* -- state -- */
+  /**
+  * ユーザープロファイルデータストア
   */
-  const state = {
-    // ユーザーのプロファイルデータ
-    userProfile: reactive<userProfileDataInterface>({
-      name: undefined,
-      email: undefined,
-      uid: undefined,
-      photoURL: undefined
-    }),
+  const userProfile = useState<userProfileDataInterface>('userProfile', () => ({
+    name: null,
+    email: null,
+    uid: null,
+    photoURL: null
+  }))
 
-    isLoad: ref<boolean>(true)
-  }
+  const isGettingProfileData = useState('isGettingProfileData', () => (true))
 
-  /*
-    mutation
-  */
-  // userProfileを引数のデータで置き換える
-  const updateUserProfile = (name: string | null, email: string | null, uid: string | null, photoURL: string | null) => {
-    state.userProfile.name = name
-    state.userProfile.email = email
-    state.userProfile.uid = uid
-    state.userProfile.photoURL = photoURL
-  }
-
-  // userProfileを初期化
-  const initUserProfile = () => {
-    state.userProfile.name = null
-    state.userProfile.email = null
-    state.userProfile.uid = null
-    state.userProfile.photoURL = null
-  }
-
-  /*
-    action
-  */
-  // auth.tsからログイン状態を取得し、userProfileに代入
-  const { nowUser } = auth()
-  watch(nowUser, (newNowUser) => {
-    if (newNowUser.uid === undefined) {
-      state.isLoad.value = true
-    } else {
-      state.isLoad.value = false
+  /* -- mutations -- */
+  /**
+   * userProfileのデータを更新する mutation
+   * @param newVal \{ name, email, uid, photoURL }
+   * @returns void
+   */
+  const updateUserProfile = ({ name, email, uid, photoURL }: { name: string, email: string, uid: string, photoURL: string }) => {
+    const newVal = {
+      name,
+      email,
+      uid,
+      photoURL
     }
-    updateUserProfile(newNowUser.name!, newNowUser.email!, newNowUser.uid!, newNowUser.photoURL!)
+    userProfile.value = newVal
+  }
+
+  /**
+   * userProfileを初期化する mutation
+   * @returns void
+   */
+  const initUserProfile = () => {
+    userProfile.value = {
+      name: null,
+      email: null,
+      uid: null,
+      photoURL: null
+    }
+  }
+
+  const updateIsGettingProfileData = (flag: boolean) => {
+    isGettingProfileData.value = flag
+  }
+
+  /* -- actions -- */
+  // auth.tsからログイン状態を取得し、userProfileに代入
+  const { loggedInUser } = useAuth()
+  watch(loggedInUser, (newLoggedInUser) => {
+    if (newLoggedInUser.uid === undefined) {
+      isGettingProfileData.value = true
+    } else {
+      isGettingProfileData.value = false
+    }
+    updateUserProfile({
+      name: newLoggedInUser.name!,
+      email: newLoggedInUser.email!,
+      uid: newLoggedInUser.uid!,
+      photoURL: newLoggedInUser.photoURL!
+    })
   })
 
   return {
-    userProfile: shallowReadonly(state.userProfile),
-    isLoad: shallowReadonly(state.isLoad),
+    userProfile: readonly(userProfile),
+    isGettingProfileData: readonly(isGettingProfileData),
 
-    // updateUserProfile,
-    initUserProfile
+    updateUserProfile,
+    initUserProfile,
+    updateIsGettingProfileData
   }
 }
-
-export type userProfileType = ReturnType<typeof useUserProfile>
-export const userProfileKey: InjectionKey<userProfileType> = Symbol('userProfileKey')
