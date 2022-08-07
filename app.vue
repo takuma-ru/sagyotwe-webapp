@@ -1,15 +1,37 @@
 <template>
-  <div>
+  <div id="app">
     <NuxtPage />
-    {{ userProfile }}
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useUserProfileStore } from './store/userProfileStore.js'
+import { useColorStore } from './store/color'
+import { useUserProfileStore } from './store/userProfileStore'
 
+/* -- store -- */
+/* -- state -- */
+/* -- variable(ref, reactive, computed) -- */
+/* -- function -- */
+/* -- watch -- */
+/* -- life cycle -- */
+
+/* -- store -- */
 const {
-  userProfile
-} = useUserProfileStore()
+  getColor
+} = useColorStore()
 
+useUserProfileStore()
 </script>
+
+<style lang="scss">
+#app {
+  background-color: v-bind(getColor('theme', 'background'));
+  color: v-bind(getColor('theme', 'text'));
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  margin: 0px;
+}
+</style>
