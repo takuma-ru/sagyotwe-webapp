@@ -6,14 +6,13 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: '%s｜さぎょツイ',
       title: 'さぎょツイ',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/icon_only.png' } // これを追記する
+        { rel: 'icon', type: 'image/png', href: '/icon_rounded.png' } // これを追記する
       ]
     }
   }

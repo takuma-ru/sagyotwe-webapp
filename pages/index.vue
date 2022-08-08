@@ -9,6 +9,8 @@
 import { useFirestore } from '../composables/firebase/useFirestore'
 import SignInButton from '~~/components/utils/SignInButton.vue'
 
+useMeta({ title: 'Home｜さぎょツイ' })
+
 const {
   getTestData
 } = useFirestore()
