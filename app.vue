@@ -6,6 +6,7 @@
 
 <script lang="ts" setup>
 import { useColorStore } from './store/color'
+import { useDarkModeStore } from './store/darkMode'
 import { useUserProfileStore } from './store/userProfileStore'
 
 /* -- store -- */
@@ -20,7 +21,12 @@ const {
   getColor
 } = useColorStore()
 
+const {
+  setSytemMode
+} = useDarkModeStore()
+
 useUserProfileStore()
+setSytemMode()
 </script>
 
 <style lang="scss">
