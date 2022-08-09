@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <NuxtPage />
+    <AppBar />
+    <div id="contents">
+      <NuxtPage />
+    </div>
   </div>
 </template>
 
@@ -8,6 +11,7 @@
 import { useColorStore } from './store/color'
 import { useDarkModeStore } from './store/darkMode'
 import { useUserProfileStore } from './store/userProfileStore'
+import AppBar from './components/layouts/AppBar.vue'
 
 /* -- store -- */
 /* -- state -- */
@@ -29,14 +33,24 @@ useUserProfileStore()
 setSytemMode()
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
+  display: grid;
+  grid-template-rows: 64px 1fr;
+
+  width: 100vw;
+  height: 100vh;
+
   background-color: v-bind(getColor('theme', 'background'));
   color: v-bind(getColor('theme', 'text'));
-  height: 100vh;
-  width: 100vw;
-}
 
+  #contents {
+    margin: 16px;
+  }
+}
+</style>
+
+<style lang="scss">
 body {
   margin: 0px;
 }

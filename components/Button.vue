@@ -8,7 +8,7 @@
     :size="size"
     :fab="fab"
     :icon="iconMode"
-    @click=""
+    @click="click()"
   >
     <div
       class="text"
@@ -64,6 +64,19 @@ defineProps({
     default: null
   }
 })
+
+const emits = defineEmits<{(e: 'click'): void}>()
+
+/* -- store -- */
+/* -- state -- */
+/* -- variable(ref, reactive, computed) -- */
+/* -- function -- */
+const click = () => {
+  emits('click')
+}
+
+/* -- watch -- */
+/* -- life cycle -- */
 
 </script>
 
