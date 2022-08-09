@@ -15,10 +15,6 @@ import useAuth from '~~/composables/firebase/auth'
 import { useColorStore } from '~~/store/color.js'
 import { useUserProfileStore } from '~~/store/userProfileStore.js'
 
-const {
-  getColor
-} = useColorStore()
-
 useUserProfileStore()
 
 const auth = useAuth()
@@ -61,7 +57,9 @@ const auth = useAuth()
       height: 24px;
       margin-right: 8px;
 
-      background-image: url(../../assets/twitter/TwitterSocialIcons_circle_white.svg);
+      background-image: url(../../assets/twitter/twitter_logo_white.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
     }
 
     svg {

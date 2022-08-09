@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="index">
+    <p>- はじめる -</p>
     <SignInButton />
-    index
   </div>
 </template>
 
@@ -17,3 +17,15 @@ const {
 
 getTestData()
 </script>
+
+<style lang="scss" scoped>
+#index {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+</style>
