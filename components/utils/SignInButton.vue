@@ -1,5 +1,15 @@
 <template>
   <button
+    v-if="userProfile.userProfile.value.uid"
+    id="twitter-signin-button"
+    @click="auth.trySignOut()"
+  >
+    <div class="text">
+      サインアウト
+    </div>
+  </button>
+  <button
+    v-else
     id="twitter-signin-button"
     @click="auth.trySignIn()"
   >
@@ -11,11 +21,10 @@
 </template>
 
 <script lang="ts" setup>
-import useAuth from '~~/composables/firebase/auth'
-import { useColorStore } from '~~/store/color.js'
+import { useAuth } from '~~/composables/firebase/auth'
 import { useUserProfileStore } from '~~/store/userProfileStore.js'
 
-useUserProfileStore()
+const userProfile = useUserProfileStore()
 
 const auth = useAuth()
 

@@ -2,6 +2,7 @@
   <div id="app">
     <AppBar />
     <div id="contents">
+      {{ diaryData }}
       <NuxtPage />
     </div>
   </div>
@@ -11,6 +12,7 @@
 import { useColorStore } from './store/color'
 import { useDarkModeStore } from './store/darkMode'
 import { useUserProfileStore } from './store/userProfileStore'
+import { useDiaryDataStore } from './store/diaryDataStore'
 import AppBar from './components/layouts/AppBar.vue'
 
 /* -- store -- */
@@ -29,7 +31,13 @@ const {
   setSytemMode
 } = useDarkModeStore()
 
-useUserProfileStore()
+const {
+  diaryData
+} = useDiaryDataStore()
+
+const {
+  userProfile
+} = useUserProfileStore()
 setSytemMode()
 </script>
 

@@ -1,4 +1,5 @@
-import useAuth from '~~/composables/firebase/auth'
+import { useDiaryDataStore } from './diaryDataStore'
+import { useAuth } from '~~/composables/firebase/auth'
 
 /**
   現在ログイン中のユーザープロファイルデータストア
@@ -11,6 +12,8 @@ export interface userProfileDataInterface {
 }
 
 export const useUserProfileStore = () => {
+  const diaryDataStore = useDiaryDataStore()
+
   /* -- state -- */
   /**
   * ユーザープロファイルデータストア
@@ -26,7 +29,7 @@ export const useUserProfileStore = () => {
 
   /* -- mutations -- */
   /**
-   * userProfileのデータを更新する mutation
+   * userProfileのデータを保存する
    * @param newVal \{ name, email, uid, photoURL }
    * @returns void
    */
@@ -41,7 +44,7 @@ export const useUserProfileStore = () => {
   }
 
   /**
-   * userProfileを初期化する mutation
+   * userProfileを初期化する
    * @returns void
    */
   const initUserProfile = () => {
@@ -53,18 +56,28 @@ export const useUserProfileStore = () => {
     }
   }
 
+  /**
+   * プロファイルデータ取得中のフラグを更新する
+   * @param flag フラグ値
+   */
   const updateIsGettingProfileData = (flag: boolean) => {
     isGettingProfileData.value = flag
   }
 
-  /* -- actions -- */
+  /* -- action -- */
+
+  /* -- watch -- */
   // auth.tsからログイン状態を取得し、userProfileに代入
   const { loggedInUser } = useAuth()
   watch(loggedInUser, (newLoggedInUser) => {
+    console.log(newLoggedInUser)
     if (newLoggedInUser.uid === undefined) {
       isGettingProfileData.value = true
     } else {
       isGettingProfileData.value = false
+      if (newLoggedInUser.uid !== null) {
+        diaryDataStore.getDiaryDataThisYearThisMonth(newLoggedInUser.uid)
+      }
     }
     updateUserProfile({
       name: newLoggedInUser.name!,

@@ -1,31 +1,29 @@
 <template>
   <div id="index">
-    <p>- はじめる -</p>
-    <SignInButton />
+    index
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useFirestore } from '../composables/firebase/useFirestore'
-import SignInButton from '~~/components/utils/SignInButton.vue'
 
 useMeta({ title: 'Home｜さぎょツイ' })
-
-const {
-  getTestData
-} = useFirestore()
-
-getTestData()
 </script>
 
 <style lang="scss" scoped>
 #index {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
   align-items: center;
 
   width: 100%;
   height: 100%;
+
+  .logo {
+  }
+
+  .contents {
+
+  }
 }
 </style>

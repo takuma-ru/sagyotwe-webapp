@@ -12,7 +12,7 @@ import { userProfileDataInterface } from '~/store/userProfileStore'
 /**
   Firebase Authentication 関連関数群
   **/
-export default function useAuth () {
+export const useAuth = () => {
   const router = useRouter()
   const twitterProvider = new TwitterAuthProvider()
   const auth = getAuth()
@@ -58,7 +58,6 @@ export default function useAuth () {
           loggedInUser.email = user.email
           loggedInUser.uid = user.uid
           loggedInUser.photoURL = user.photoURL
-          console.log(loggedInUser)
         }).catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
