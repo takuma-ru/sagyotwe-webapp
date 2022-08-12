@@ -27,9 +27,9 @@
 </template>
 
 <script lang="ts" setup>
+import Icon from '../Icon.vue'
 import { useAuth } from '~~/composables/firebase/auth'
 import { useUserProfileStore } from '~~/store/userProfileStore.js'
-import Icon from '../Icon.vue';
 
 const userProfile = useUserProfileStore()
 

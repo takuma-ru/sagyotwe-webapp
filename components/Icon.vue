@@ -26,8 +26,7 @@ const props = defineProps({
 
 /* -- store -- */
 const {
-  color,
-  getColor
+  color
 } = useColorStore()
 
 /* -- variable(ref, reactive, computed) -- */

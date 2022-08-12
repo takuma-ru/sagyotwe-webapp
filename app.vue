@@ -29,14 +29,10 @@ const {
   setSytemMode
 } = useDarkModeStore()
 
-const {
-  diaryData
-} = useDiaryDataStore()
-
-const {
-  userProfile
-} = useUserProfileStore()
+useDiaryDataStore()
+useUserProfileStore()
 setSytemMode()
+
 </script>
 
 <style lang="scss" scoped>
