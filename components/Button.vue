@@ -10,27 +10,26 @@
     :icon="iconMode"
     @click="click()"
   >
-    <div
-      class="text"
-      :style="`
-        --color: ${textColor}
-      `"
-    >
+    <div class="text">
       <Icon
         v-if="icon"
-        text
+        :color="dependsLuminanceColor(propsColor)"
         size="24px"
-        :icon="icon"
-      />
-      <Markdown unwrap="p" />
+        style="margin-right: 0.4rem"
+      >
+        {{ icon }}
+      </Icon>
+      <slot />
     </div>
   </button>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue'
+import { useColorStore } from '~~/store/color'
+import { dependsLuminanceColor } from '~/composables/utils/dependsLuminanceColor'
 
-defineProps({
+const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
@@ -41,11 +40,7 @@ defineProps({
   },
   color: {
     type: String,
-    default: 'primary'
-  },
-  textColor: {
-    type: String,
-    default: 'black'
+    default: '#5498ff'
   },
   size: {
     type: String as PropType<'small' | 'normal' | 'large'>,
@@ -68,8 +63,15 @@ defineProps({
 const emits = defineEmits<{(e: 'click'): void}>()
 
 /* -- store -- */
+const {
+  getColor
+} = useColorStore()
+
 /* -- state -- */
+
 /* -- variable(ref, reactive, computed) -- */
+const propsColor = ref(props.color)
+
 /* -- function -- */
 const click = () => {
   emits('click')
@@ -81,39 +83,33 @@ const click = () => {
 </script>
 
 <style lang="scss" scoped>
-button {
+#Button {
   position: relative;
   width: auto;
   height: 100%;
 
   border: none;
-  border-radius: 0.4em;
-  background-color: $green;
+  border-radius: 8px;
+  background-color: v-bind(propsColor);
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color:rgba(0,0,0,0);
 
   .text {
-    --color: $white;
     display: inline-flex;
     position: relative;
     z-index: 1;
+    height: 24px;
     margin: 0rem 1rem;
 
     text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--color);
+    font-size: 16px;
+    font-weight: 500;
+    color: v-bind(dependsLuminanceColor(propsColor));
 
     justify-content: center;
     align-items: center;
     vertical-align: middle;
-
-    svg {
-      path {
-        fill: var(--color);
-      }
-    }
   }
 
   &:hover::before {
@@ -152,7 +148,7 @@ button {
       left: 0px;
 
       border-radius: 8px;
-      background-color: $black-lighten-2;
+      background-color: v-bind(getColor('black', 'lighten', 2));
     }
   }
 
@@ -191,7 +187,7 @@ button {
 
   &[size = "normal"] {
     width: auto;
-    height: 36px;
+    height: 40px;
   }
 
   &[size = "large"] {

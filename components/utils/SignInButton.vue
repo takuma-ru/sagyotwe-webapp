@@ -5,6 +5,12 @@
     @click="auth.trySignOut()"
   >
     <div class="text">
+      <Icon
+        color="white"
+        style="margin-right: 8px"
+      >
+        logout
+      </Icon>
       サインアウト
     </div>
   </button>
@@ -23,6 +29,7 @@
 <script lang="ts" setup>
 import { useAuth } from '~~/composables/firebase/auth'
 import { useUserProfileStore } from '~~/store/userProfileStore.js'
+import Icon from '../Icon.vue';
 
 const userProfile = useUserProfileStore()
 
@@ -37,10 +44,10 @@ const auth = useAuth()
 
   position: relative;
   width: auto;
-  height: 36px;
+  height: 40px;
 
   border: none;
-  border-radius: 0.4em;
+  border-radius: 8px;
   background-color: #1DA1F2;
   cursor: pointer;
   outline: none;
@@ -53,8 +60,8 @@ const auth = useAuth()
     margin: 0rem 1rem;
 
     text-align: center;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 500;
     color: #FFF;
 
     justify-content: center;

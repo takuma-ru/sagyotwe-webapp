@@ -3,6 +3,7 @@
     class="material-symbols-rounded"
     :style="{
       fontSize: size,
+      color: props.color ? props.color : color.theme.text
     }"
   >
     <slot />
@@ -12,26 +13,29 @@
 <script lang="ts" setup>
 import { useColorStore } from '../store/color'
 
-defineProps({
-  icon: {
-    type: String,
-    default: 'code'
-  },
+const props = defineProps({
   size: {
     type: String,
     default: '24px'
+  },
+  color: {
+    type: String,
+    default: null
   }
 })
 
+/* -- store -- */
 const {
+  color,
   getColor
 } = useColorStore()
+
+/* -- variable(ref, reactive, computed) -- */
+
 </script>
 
 <style lang="scss" scoped>
 .material-symbols-rounded {
-  color: v-bind(getColor('theme', 'text'));
-
   user-select: none
 }
 </style>

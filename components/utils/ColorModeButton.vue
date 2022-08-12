@@ -33,6 +33,8 @@ const click = () => {
 
 <style scoped>
 .color-mode {
+  height: 24px;
+
   cursor: pointer;
 }
 </style>

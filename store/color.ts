@@ -1,12 +1,10 @@
 export interface ColorGradationsInterface {
   default: string,
   lighten: {
-    1: string
-    2: string
+    [index: number]: string
   }
   darken: {
-    1: string
-    2: string
+    [index: number]: string
   }
 }
 export interface ColorsInterface {
@@ -115,7 +113,7 @@ export const useColorStore = () => {
   const getColor = (
     payloadFirst: 'white' | 'black' | 'red' | 'blue' | 'yellow' | 'green' | 'theme',
     payloadSecond: 'default' | 'lighten' | 'darken' | 'text' | 'background',
-    PayloadThird?: 1 | 2
+    PayloadThird?: number
   ) => {
     const returnColor: string = PayloadThird ? color.value[payloadFirst][payloadSecond][PayloadThird] : color.value[payloadFirst][payloadSecond]
     return returnColor
