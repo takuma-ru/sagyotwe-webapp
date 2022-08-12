@@ -1,42 +1,40 @@
-# Nuxt 3 Minimal Starter
+# <div style="text-align: center;">さぎょツイ</div>
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+<p align="center">
+  <img src="/assets/featureGraphic.png" alt="featureGraphic">
+</p>
 
-## Setup
+## Description
+:construction:**現在開発中**<br>
+日々の作業日記を記録し、自動でツイートしてくれるサービス
 
-Make sure to install the dependencies:
+## Requirement
+| name | version |
+| ------------- | ------------- |
+| firebase | ^9.9.2 |
+| nuxt | 3.0.0-rc.6 |
+| sass | ^1.54.3 |
+| typescript | ^4.7.4 |
 
-```bash
-# yarn
-yarn install
 
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
+## Getting Started
+#### 1. Install
+```md
+yarn
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
+#### 2. Dev server
+```md
+yarn dev
 ```
 
-## Production
+#### 3. Access
+[localhost:3000](http://localhost:3000/)
 
-Build the application for production:
+## PlayStore
+none
 
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+## ScreenShot
+| Index | SignUp | Add |
+| -- | -- | -- |
+|  |  |  |
