@@ -22,6 +22,7 @@ import AppBar from './components/layouts/AppBar.vue'
 
 /* -- store -- */
 const {
+  color,
   getColor
 } = useColorStore()
 
@@ -35,7 +36,7 @@ setSytemMode()
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #app {
   display: grid;
   grid-template-rows: 64px 1fr;
@@ -43,16 +44,14 @@ setSytemMode()
   width: 100vw;
   height: 100vh;
 
-  background-color: v-bind(getColor('theme', 'background'));
-  color: v-bind(getColor('theme', 'text'));
+  background-color: v-bind("color.theme.background");
+  color: v-bind("color.theme.text");
 
   #contents {
     margin: 16px;
   }
 }
-</style>
 
-<style lang="scss">
 body {
   margin: 0px;
 }
