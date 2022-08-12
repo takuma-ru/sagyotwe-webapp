@@ -18,9 +18,7 @@ export const useDiaryDataStore = () => {
    */
   const diaryData = useState<IDiaryData>('diaryData', () => ({
     y2022: {
-      m08: {
-        id: 'y2022m08d06'
-      }
+      m08: {}
     }
   }))
 
@@ -33,15 +31,29 @@ export const useDiaryDataStore = () => {
     diaryData.value[y][m][d] = data
   }
 
-  const deleteDiaryData = (id: string) => {
+  const deleteDiaryData = (docId: string) => {
+    // y○○○○
+    const yearID = docId.substring(0, 5)
+    // m○○
+    const monthID = docId.substring(5, 8)
+    // d○○
+    const dayID = docId.substring(8, 11)
+
+    // 日記データストアオブジェクトから削除
+    delete diaryData.value[yearID][monthID][dayID]
   }
 
   const initDiaryData = () => {
+    diaryData.value = {
+      y2022: {
+        m08: {}
+      }
+    }
   }
 
   /* -- action -- */
   /**
-   * Firestoreに保存されている今月の日記データの変更状況を監視し、変更があった場合ににっきでーたストアに反映するAction
+   * Firestoreに保存されている今月の日記データの変更状況を監視し、変更があった場合に日記データストアに反映するAction
    * @param uid ログインしているユーザーのUID
    */
   const getDiaryDataThisYearThisMonth = (uid: string) => {
@@ -64,7 +76,7 @@ export const useDiaryDataStore = () => {
         snapshot.docChanges().forEach((change) => {
           const data = change.doc.data() as IDate
 
-          const docId = change.doc.id
+          const dayId = change.doc.id
 
           // 取得データを整形
           const gotDiaryData: IDate = {
@@ -77,11 +89,11 @@ export const useDiaryDataStore = () => {
           // 新たな日記データの場合
           if (change.type === 'added') {
             // false( = -1 )の場合、日記データストアにデータを追加する
-            if (!diaryData.value[thisYearID][thisMonthID][docId]) {
+            if (!diaryData.value[thisYearID][thisMonthID][dayId]) {
               addDiaryData({
                 y: thisYearID,
                 m: thisMonthID,
-                d: docId,
+                d: dayId,
                 data: gotDiaryData
               })
             }
@@ -93,11 +105,11 @@ export const useDiaryDataStore = () => {
             deleteDiaryData(change.doc.data().id)
 
             // もう一度追加する処理
-            if (!diaryData.value[thisYearID][thisMonthID][docId]) {
+            if (!diaryData.value[thisYearID][thisMonthID][dayId]) {
               addDiaryData({
                 y: thisYearID,
                 m: thisMonthID,
-                d: docId,
+                d: dayId,
                 data: gotDiaryData
               })
             }
@@ -111,7 +123,7 @@ export const useDiaryDataStore = () => {
 
           // ローカル or サーバーから取得したデータかどうかをコンソールに表示
           const source = snapshot.metadata.fromCache ? '\u001B[31mlocal cache' : '\u001B[34mserver'
-          console.log('\u001B[35mTask\u001B[39m data came from ' + source)
+          console.log('\u001B[32mDiary\u001B[39m data came from ' + source)
         })
       })
     } else {

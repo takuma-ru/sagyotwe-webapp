@@ -70,7 +70,6 @@ export const useUserProfileStore = () => {
   // auth.tsからログイン状態を取得し、userProfileに代入
   const { loggedInUser } = useAuth()
   watch(loggedInUser, (newLoggedInUser) => {
-    console.log(newLoggedInUser)
     if (newLoggedInUser.uid === undefined) {
       isGettingProfileData.value = true
     } else {

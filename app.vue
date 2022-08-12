@@ -2,7 +2,6 @@
   <div id="app">
     <AppBar />
     <div id="contents">
-      {{ diaryData }}
       <NuxtPage />
     </div>
   </div>
@@ -16,7 +15,6 @@ import { useDiaryDataStore } from './store/diaryDataStore'
 import AppBar from './components/layouts/AppBar.vue'
 
 /* -- store -- */
-/* -- state -- */
 /* -- variable(ref, reactive, computed) -- */
 /* -- function -- */
 /* -- watch -- */
