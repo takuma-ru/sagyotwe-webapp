@@ -110,18 +110,8 @@ export const useColorStore = () => {
     }
   }
 
-  const getColor = (
-    payloadFirst: 'white' | 'black' | 'red' | 'blue' | 'yellow' | 'green' | 'theme',
-    payloadSecond: 'default' | 'lighten' | 'darken' | 'text' | 'background',
-    PayloadThird?: number
-  ) => {
-    const returnColor: string = PayloadThird ? color.value[payloadFirst][payloadSecond][PayloadThird] : color.value[payloadFirst][payloadSecond]
-    return returnColor
-  }
-
   return {
     color: readonly(color),
-    getColor,
     setLightTheme,
     setDarkTheme
   }

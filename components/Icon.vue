@@ -1,11 +1,5 @@
 <template>
-  <span
-    class="material-symbols-rounded"
-    :style="{
-      fontSize: size,
-      color: props.color ? props.color : color.theme.text
-    }"
-  >
+  <span class="material-symbols-rounded">
     <slot />
   </span>
 </template>
@@ -35,6 +29,8 @@ const {
 
 <style lang="scss" scoped>
 .material-symbols-rounded {
+  font-size: v-bind('props.size');
+  color: v-bind('props.color ? props.color : color.theme.text');
   user-select: none
 }
 </style>

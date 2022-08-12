@@ -13,7 +13,7 @@
     <div class="text">
       <Icon
         v-if="icon"
-        :color="dependsLuminanceColor(propsColor)"
+        :color="dependsLuminanceColor(props.color)"
         size="24px"
         style="margin-right: 0.4rem"
       >
@@ -64,13 +64,12 @@ const emits = defineEmits<{(e: 'click'): void}>()
 
 /* -- store -- */
 const {
-  getColor
+  color
 } = useColorStore()
 
 /* -- state -- */
 
 /* -- variable(ref, reactive, computed) -- */
-const propsColor = ref(props.color)
 
 /* -- function -- */
 const click = () => {
@@ -90,7 +89,7 @@ const click = () => {
 
   border: none;
   border-radius: 8px;
-  background-color: v-bind(propsColor);
+  background-color: v-bind('props.color');
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color:rgba(0,0,0,0);
@@ -105,7 +104,7 @@ const click = () => {
     text-align: center;
     font-size: 16px;
     font-weight: 500;
-    color: v-bind(dependsLuminanceColor(propsColor));
+    color: v-bind('dependsLuminanceColor(props.color)');
 
     justify-content: center;
     align-items: center;
@@ -148,7 +147,7 @@ const click = () => {
       left: 0px;
 
       border-radius: 8px;
-      background-color: v-bind(getColor('black', 'lighten', 2));
+      background-color: v-bind('color.black.lighten[2]');
     }
   }
 
