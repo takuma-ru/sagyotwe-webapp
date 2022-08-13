@@ -2,20 +2,21 @@
   <button
     id="Button"
     :disabled="disabled"
-    :style="{
-      backgroundColor: ''
-    }"
-    :size="size"
+    :size="!isIcon && size"
     :fab="fab"
-    :icon="iconMode"
+    :icon="isIcon"
     @click="click()"
   >
     <div class="text">
       <Icon
         v-if="icon"
-        :color="dependsLuminanceColor(props.color)"
+        :color="!isIcon ? dependsLuminanceColor(props.color) : null"
         size="24px"
-        style="margin-right: 0.4rem"
+        :fill="props.iconProps?.fill"
+        :wght="props.iconProps?.wght"
+        :grad="props.iconProps?.grad"
+        :opsz="props.iconProps?.opsz"
+        :style="!isIcon && 'margin-right: 0.4rem'"
       >
         {{ icon }}
       </Icon>
@@ -25,42 +26,33 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue'
 import { useColorStore } from '~~/store/color'
 import { dependsLuminanceColor } from '~/composables/utils/dependsLuminanceColor'
+import { IProps as IIconProps } from '~/components/Icon.vue'
 
-const props = defineProps({
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  icon: {
-    type: String,
-    default: null
-  },
-  color: {
-    type: String,
-    default: '#5498ff'
-  },
-  size: {
-    type: String as PropType<'small' | 'normal' | 'large'>,
-    default: 'normal'
-  },
-  fab: {
-    type: Boolean,
-    default: false
-  },
-  iconMode: {
-    type: Boolean,
-    default: false
-  },
-  to: {
-    type: String,
-    default: null
-  }
+/* -- type, interface -- */
+interface IEmits {
+  (e: 'click'): void
+}
+
+interface IProps {
+  disabled?: boolean
+  icon?: string
+  iconProps?: IIconProps
+  color?: string
+  size?: 'small' | 'normal' | 'large'
+  fab?: boolean
+  isIcon?: boolean
+  to?: string
+}
+
+/* -- props, emit -- */
+const props = withDefaults(defineProps<IProps>(), {
+  color: '#5498ff',
+  size: 'normal'
 })
 
-const emits = defineEmits<{(e: 'click'): void}>()
+const emit = defineEmits<IEmits>()
 
 /* -- store -- */
 const {
@@ -73,7 +65,7 @@ const {
 
 /* -- function -- */
 const click = () => {
-  emits('click')
+  props.to ? navigateTo(props.to) : emit('click')
 }
 
 /* -- watch -- */
@@ -172,10 +164,17 @@ const click = () => {
     }
   }
 
-  &[icon] {
+  &[icon = true] {
+    width: 40px;
+    height: 40px;
+
+    background-color: transparent;
+
     .text {
       height: calc(100% - 16px);
+
       padding: 0px;
+      margin: 0px;
     }
   }
 
