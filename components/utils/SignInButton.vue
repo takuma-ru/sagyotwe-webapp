@@ -69,8 +69,8 @@ const auth = useAuth()
     vertical-align: middle;
 
     .logo {
-      width: 24px;
-      height: 24px;
+      min-width: 24px;
+      min-height: 24px;
       margin-right: 8px;
 
       background-image: url(../../assets/twitter/twitter_logo_white.svg);
