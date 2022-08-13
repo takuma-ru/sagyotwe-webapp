@@ -1,19 +1,11 @@
 <template>
-  <div id="index">
-    <div class="buttons">
-      <Button
-        icon="code"
-        @click="click()"
-      >
-        code
-      </Button>
-    </div>
+  <div id="setting">
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useDiaryDataStore } from '~/store/diaryDataStore'
-useMeta({ title: 'Home｜さぎょツイ' })
+useMeta({ title: 'Setting｜さぎょツイ' })
 
 /* -- type, interface -- */
 /* -- props, emit -- */
@@ -24,16 +16,13 @@ const {
 
 /* -- variable(ref, reactive, computed) -- */
 /* -- function -- */
-const click = () => {
-  console.log('open')
-}
 
 /* -- watch -- */
 /* -- life cycle -- */
 </script>
 
 <style lang="scss" scoped>
-#index {
+#setting {
   display: grid;
   grid-template-rows: 64px 1fr;
   justify-items: center;
@@ -41,9 +30,5 @@ const click = () => {
 
   width: 100%;
   height: 100%;
-
-  .buttons {
-
-  }
 }
 </style>
