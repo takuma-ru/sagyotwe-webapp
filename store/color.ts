@@ -1,5 +1,5 @@
 export interface ColorGradationsInterface {
-  default: string,
+  default: string
   lighten: {
     [index: number]: string
   }
@@ -16,7 +16,20 @@ export interface ColorsInterface {
   green: ColorGradationsInterface
   theme: {
     text: string
-    background: string,
+    subText: string
+    background: string
+    lighten: {
+      [index: number]: string
+    }
+    darken: {
+      [index: number]: string
+    }
+    complementaryLighten: {
+      [index: number]: string
+    }
+    complementaryDarken: {
+      [index: number]: string
+    }
   }
 }
 
@@ -89,7 +102,24 @@ const colorPallet: ColorsInterface = {
   },
   theme: {
     text: '#030300',
-    background: '#F2F2F2'
+    subText: '#676764',
+    background: '#F2F2F2',
+    lighten: {
+      1: '#676764',
+      2: '#CBCAC7'
+    },
+    darken: {
+      1: '#2B2B2B',
+      2: '#171717'
+    },
+    complementaryLighten: {
+      1: '#FFFFF1',
+      2: '#FFFFEE'
+    },
+    complementaryDarken: {
+      1: '#F2F2F2',
+      2: '#E9E9E0'
+    }
   }
 }
 
@@ -99,14 +129,48 @@ export const useColorStore = () => {
   const setLightTheme = () => {
     color.value.theme = {
       text: color.value.black.default,
-      background: color.value.white.darken[1]
+      subText: color.value.black.lighten[1],
+      background: color.value.white.darken[1],
+      lighten: {
+        1: color.value.black.lighten[1],
+        2: color.value.black.lighten[2]
+      },
+      darken: {
+        1: color.value.black.darken[1],
+        2: color.value.black.darken[2]
+      },
+      complementaryLighten: {
+        1: color.value.white.lighten[1],
+        2: color.value.white.lighten[2]
+      },
+      complementaryDarken: {
+        1: color.value.white.darken[1],
+        2: color.value.white.darken[2]
+      }
     }
   }
 
   const setDarkTheme = () => {
     color.value.theme = {
       text: color.value.white.darken[2],
-      background: color.value.black.darken[2]
+      subText: color.value.white.darken[1],
+      background: color.value.black.darken[2],
+      lighten: {
+        1: color.value.white.lighten[1],
+        2: color.value.white.lighten[2]
+      },
+      darken: {
+        1: color.value.white.darken[1],
+        2: color.value.white.darken[2]
+      },
+      complementaryLighten: {
+        1: color.value.black.lighten[1],
+        2: color.value.black.lighten[2]
+      },
+      complementaryDarken: {
+        1: color.value.black.darken[1],
+        2: color.value.black.darken[2]
+      }
     }
   }
 
