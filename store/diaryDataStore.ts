@@ -88,7 +88,7 @@ export const useDiaryDataStore = () => {
 
           // 新たな日記データの場合
           if (change.type === 'added') {
-            // false( = -1 )の場合、日記データストアにデータを追加する
+            // 日記データを取得できなかった場合、日記データストアにデータを追加する
             if (!diaryData.value[thisYearID][thisMonthID][dayId]) {
               addDiaryData({
                 y: thisYearID,

@@ -48,6 +48,7 @@ setSytemMode()
   width: 100vw;
   height: 100vh;
 
+  overflow: auto;
   background-color: v-bind('color.theme.background');
   color: v-bind('color.theme.text');
 
@@ -69,11 +70,19 @@ setSytemMode()
   }
 }
 
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
 body {
   margin: 0px;
 }
 
 h1, h2, h3, h4, h5 {
   margin: 0px;
+}
+
+.sub-text {
+  color: v-bind('color.theme.subText');
 }
 </style>

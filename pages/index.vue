@@ -8,8 +8,8 @@
         code
       </Button>
     </div>
-    <div>
-      <DiarysDiaryCard />
+    <div class="contents">
+      <DiarysDiaryCard doc-id="y2022m08d04" />
     </div>
   </div>
 </template>
@@ -47,6 +47,16 @@ const click = () => {
 
   .buttons {
 
+  }
+
+  .contents {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    align-items: center;
   }
 }
 </style>
