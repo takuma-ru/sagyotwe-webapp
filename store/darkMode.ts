@@ -1,7 +1,6 @@
 import { useColorStore } from './color'
 
 type ColorModeType = 'light' | 'dark'
-/* const w = window */
 
 export const useDarkModeStore = () => {
   useColorStore()

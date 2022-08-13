@@ -8,6 +8,9 @@
         code
       </Button>
     </div>
+    <div>
+      <DiarysDiaryCard />
+    </div>
   </div>
 </template>
 
