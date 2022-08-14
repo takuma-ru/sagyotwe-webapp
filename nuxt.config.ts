@@ -47,7 +47,7 @@ export default defineNuxtConfig({
         registerType: 'autoUpdate',
         injectRegister: 'auto',
         devOptions: {
-          enabled: true
+          enabled: false
         },
         manifest: {
           lang: 'ja',
@@ -56,6 +56,7 @@ export default defineNuxtConfig({
           description: 'さぎょツイ',
           start_url: '/',
           display: 'standalone',
+          background_color: '#FCFCF9',
           theme_color: '#FCFCF9',
           icons: [
             {

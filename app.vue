@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Meta :theme-color="color.theme.background" />
+    <Meta name="theme-color" :content="color.theme.background" />
     <AppBar />
     <NavBar />
     <div id="contents">
@@ -80,6 +80,7 @@ html {
 
 body {
   margin: 0px;
+  background-color: v-bind('color.theme.background');
 }
 
 h1, h2, h3, h4, h5 {
