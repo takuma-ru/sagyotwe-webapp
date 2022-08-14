@@ -1,4 +1,4 @@
-import { useColorStore } from './color'
+import { useColorStore } from './colorStore'
 
 type ColorModeType = 'light' | 'dark'
 

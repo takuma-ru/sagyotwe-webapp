@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useColorModeStore } from '../../store/colorMode'
-import { useColorStore } from '../../store/color'
+import { useColorModeStore } from '../../store/colorModeStore'
+import { useColorStore } from '../../store/colorStore'
 
 const {
   colorMode,

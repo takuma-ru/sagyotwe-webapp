@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useColorStore } from '~~/store/color'
+import { useColorStore } from '~~/store/colorStore'
 import { dependsLuminanceColor } from '~/composables/utils/dependsLuminanceColor'
 import { IProps as IIconProps } from '~/components/Icon.vue'
 

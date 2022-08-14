@@ -15,8 +15,8 @@
 
 <script lang="ts" setup>
 import { useDiaryDataStore } from '~/store/diaryDataStore'
-import { useColorStore } from '~~/store/color'
-import { useColorModeStore } from '~~/store/colorMode'
+import { useColorStore } from '~~/store/colorStore'
+import { useColorModeStore } from '~~/store/colorModeStore'
 
 /* -- type, interface -- */
 interface IProps {

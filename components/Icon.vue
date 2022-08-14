@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useColorStore } from '../store/color'
+import { useColorStore } from '../store/colorStore'
 
 /* -- type, interface -- */
 export interface IProps {

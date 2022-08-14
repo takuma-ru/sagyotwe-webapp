@@ -11,8 +11,8 @@
 
 <script lang="ts" setup>
 import { registerSW } from 'virtual:pwa-register'
-import { useColorStore } from './store/color'
-import { useColorModeStore } from './store/colorMode'
+import { useColorStore } from './store/colorStore'
+import { useColorModeStore } from './store/colorModeStore'
 import { useUserProfileStore } from './store/userProfileStore'
 import { useDiaryDataStore } from './store/diaryDataStore'
 import AppBar from './components/layouts/AppBar.vue'
