@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     plugins: [
       VitePWA({
         registerType: 'autoUpdate',
+        injectRegister: 'auto',
         manifest: {
           lang: 'ja',
           name: 'さぎょツイ',
