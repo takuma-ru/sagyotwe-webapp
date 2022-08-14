@@ -10,6 +10,7 @@
     </div>
     <div class="contents">
       <DiarysDiaryCard doc-id="y2022m08d04" />
+      <DiarysDiaryCard doc-id="y2022m08d05" />
     </div>
   </div>
 </template>
