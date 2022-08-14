@@ -15,6 +15,7 @@
 | nuxt | 3.0.0-rc.6 |
 | sass | ^1.54.3 |
 | typescript | ^4.7.4 |
+| vite-plugin-pwa | ^0.12.3 |
 
 
 ## Getting Started
