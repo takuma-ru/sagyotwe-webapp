@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Meta :theme-color="color.theme.background" />
     <AppBar />
     <NavBar />
     <div id="contents">

@@ -17,7 +17,10 @@
 
 <script lang="ts" setup>
 import { useDiaryDataStore } from '~/store/diaryDataStore'
-useMeta({ title: 'Home｜さぎょツイ' })
+
+useMeta({
+  title: 'Home｜さぎょツイ'
+})
 
 /* -- type, interface -- */
 /* -- props, emit -- */
