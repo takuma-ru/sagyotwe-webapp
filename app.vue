@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Meta name="theme-color" :content="color.theme.background" />
     <AppBar />
     <NavBar />
     <div id="contents">
@@ -9,12 +10,15 @@
 </template>
 
 <script lang="ts" setup>
+import { registerSW } from 'virtual:pwa-register'
 import { useColorStore } from './store/color'
 import { useDarkModeStore } from './store/darkMode'
 import { useUserProfileStore } from './store/userProfileStore'
 import { useDiaryDataStore } from './store/diaryDataStore'
 import AppBar from './components/layouts/AppBar.vue'
 import NavBar from './components/layouts/NavBar.vue'
+
+registerSW()
 
 /* -- type, interface -- */
 /* -- props, emit -- */
@@ -76,6 +80,7 @@ html {
 
 body {
   margin: 0px;
+  background-color: v-bind('color.theme.background');
 }
 
 h1, h2, h3, h4, h5 {
