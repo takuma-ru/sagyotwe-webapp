@@ -2,7 +2,7 @@ import { useColorStore } from './color'
 
 type ColorModeType = 'light' | 'dark'
 
-export const useDarkModeStore = () => {
+export const useColorModeStore = () => {
   useColorStore()
 
   /* -- state -- */
