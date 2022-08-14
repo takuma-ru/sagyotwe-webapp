@@ -10,10 +10,13 @@ export default defineNuxtConfig({
       title: 'さぎょツイ',
       meta: [
         { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: '日々の作業日記を自動でツイートしてくれるサービス' }
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/icon_rounded.png' },
+        { rel: 'apple-touch-icon', href: '/apple_touch_icon.png', size: '180x180' },
+        { rel: 'mask-icon', color: '#FCFCF9', href: '/mask_icon.svg' },
         {
           rel: 'preconnect',
           href: 'https://fonts.googleapis.com'
@@ -49,11 +52,15 @@ export default defineNuxtConfig({
         devOptions: {
           enabled: false
         },
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}']
+        },
+        includeAssets: ['icon_rounded.png', 'apple_touch_icon.png', 'masked_icon.svg'],
         manifest: {
           lang: 'ja',
           name: 'さぎょツイ',
           short_name: 'さぎょツイ',
-          description: 'さぎょツイ',
+          description: '日々の作業日記を自動でツイートしてくれるサービス',
           start_url: '/',
           display: 'standalone',
           background_color: '#FCFCF9',
