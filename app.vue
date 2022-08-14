@@ -9,12 +9,15 @@
 </template>
 
 <script lang="ts" setup>
+import { registerSW } from 'virtual:pwa-register'
 import { useColorStore } from './store/color'
 import { useDarkModeStore } from './store/darkMode'
 import { useUserProfileStore } from './store/userProfileStore'
 import { useDiaryDataStore } from './store/diaryDataStore'
 import AppBar from './components/layouts/AppBar.vue'
 import NavBar from './components/layouts/NavBar.vue'
+
+registerSW()
 
 /* -- type, interface -- */
 /* -- props, emit -- */

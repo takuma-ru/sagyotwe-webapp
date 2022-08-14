@@ -5,34 +5,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineNuxtConfig({
   ssr: false,
 
-  meta: {
-    link: [
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com'
-      },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossorigin: true
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap'
-      },
-      {
-        rel: 'manifest',
-        dataNHead: '1',
-        dataHid: 'manifest',
-        href: 'manifest.webmanifest'
-      }
-    ]
-  },
-
   app: {
     head: {
       title: 'さぎょツイ',
@@ -41,7 +13,30 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/icon_rounded.png' }
+        { rel: 'icon', type: 'image/png', href: '/icon_rounded.png' },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com'
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: true
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap'
+        },
+        {
+          rel: 'manifest',
+          dataNHead: '1',
+          dataHid: 'manifest',
+          href: 'manifest.webmanifest'
+        }
       ]
     }
   },
