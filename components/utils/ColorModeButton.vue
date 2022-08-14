@@ -7,13 +7,13 @@
 </template>
 
 <script lang="ts" setup>
-import { useDarkModeStore } from '../../store/darkMode'
+import { useColorModeStore } from '../../store/colorMode'
 import { useColorStore } from '../../store/color'
 
 const {
   colorMode,
   switchMode
-} = useDarkModeStore()
+} = useColorModeStore()
 
 const {
   setDarkTheme,

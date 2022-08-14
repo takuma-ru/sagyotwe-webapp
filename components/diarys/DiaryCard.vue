@@ -16,6 +16,7 @@
 <script lang="ts" setup>
 import { useDiaryDataStore } from '~/store/diaryDataStore'
 import { useColorStore } from '~~/store/color'
+import { useColorModeStore } from '~~/store/colorMode'
 
 /* -- type, interface -- */
 interface IProps {
@@ -31,6 +32,10 @@ const {
 const {
   color
 } = useColorStore()
+
+const {
+  colorMode
+} = useColorModeStore()
 
 /* -- variable(ref, reactive, computed) -- */
 const today = new Date()
@@ -61,9 +66,8 @@ const docDate = computed(() => {
 
   padding: 16px;
 
-  background-color: v-bind('color.theme.complementaryDarken[1]');
+  background-color: v-bind('colorMode === "dark" ? color.black.darken[1] : color.white.default');
   border-radius: 0.8rem;
-  border: 2px solid v-bind('color.theme.complementaryDarken[2]');
 
   .buttons {
     

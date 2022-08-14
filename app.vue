@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 import { registerSW } from 'virtual:pwa-register'
 import { useColorStore } from './store/color'
-import { useDarkModeStore } from './store/darkMode'
+import { useColorModeStore } from './store/colorMode'
 import { useUserProfileStore } from './store/userProfileStore'
 import { useDiaryDataStore } from './store/diaryDataStore'
 import AppBar from './components/layouts/AppBar.vue'
@@ -35,7 +35,7 @@ const {
 
 const {
   setSytemMode
-} = useDarkModeStore()
+} = useColorModeStore()
 
 useDiaryDataStore()
 useUserProfileStore()
