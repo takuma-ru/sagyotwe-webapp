@@ -9,7 +9,7 @@
         v-for="link in links"
         :key="link.name"
         :style="{
-          marginBottom: '1rem'
+          marginBottom: '2em'
         }"
       >
         <Button
@@ -87,7 +87,7 @@ const links = ref<ILinks[]>([
     display: flex;
     flex-flow: column;
 
-    margin-top: 16px;
+    margin-top: 0px;
   }
 }
 </style>

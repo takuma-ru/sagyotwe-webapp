@@ -91,7 +91,7 @@ const click = () => {
     position: relative;
     z-index: 1;
     height: 24px;
-    margin: 0rem 1rem;
+    margin: 0rem 0.4em;
 
     text-align: center;
     font-size: 16px;

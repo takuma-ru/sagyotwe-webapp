@@ -42,7 +42,6 @@ export const useDiaryDataStore = () => {
   }
 
   const addDiaryData = ({ y, m, d, data }: {y: string; m: string, d: string, data: IDate}) => {
-    console.log(y, m, d, data)
     diaryData.value[y][m][d] = data
   }
 

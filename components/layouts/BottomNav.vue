@@ -67,6 +67,6 @@ const links = ref<ILinks[]>([
   align-items: center;
 
   width: 100vw;
-  height: 64px;
+  height: 56px;
 }
 </style>

@@ -5,7 +5,6 @@
     <NavBar />
     <BottomNav />
     <div id="contents">
-      {{ useDiaryDataStore().diaryData }}
       <NuxtPage />
     </div>
   </div>
@@ -55,9 +54,17 @@ getThisDisplaySize()
 </script>
 
 <style lang="scss">
+/*
+  z-index rule ;
+
+  50 ~ 100 : Impossible field(干渉不可能領域) => 表示優先度が高いもの。隠れてはいけない要素を置く
+
+  0 ~ 40 : variable field => 隠れてもいい要素など。
+*/
+
 #app {
   display: grid;
-  grid-template-rows: v-bind('isMobileMixin("64px 1fr 64px", "64px 1fr")');
+  grid-template-rows: v-bind('isMobileMixin("64px calc(100vh - 64px - 56px) 56px", "64px 1fr")');
   grid-template-columns: v-bind('isMobileMixin("0px 1fr", "64px 1fr")');
 
   width: 100vw;
@@ -102,6 +109,8 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
+  display: inline-flex;
+  align-items: center;
   margin: 0px;
 }
 

@@ -44,6 +44,7 @@ const props = withDefaults(defineProps<IProps>(), {
   font-variation-settings: 'FILL' v-bind('props.fill ? 1 : 0'), 'wght' v-bind('props.wght'), 'GRAD' v-bind('props.grad'), 'opsz' v-bind('props.opsz');
   font-size: v-bind('props.size');
   color: v-bind('props.color ? props.color : color.theme.text');
+  text-align: center;
   user-select: none;
 }
 </style>
