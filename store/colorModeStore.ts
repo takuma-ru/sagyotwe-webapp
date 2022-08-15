@@ -11,19 +11,22 @@ export const useColorModeStore = () => {
   /* -- actions -- */
   const setLight = () => {
     colorMode.value = 'light'
+    localStorage.setItem('colorMode', colorMode.value)
   }
 
   const setDark = () => {
     colorMode.value = 'dark'
+    localStorage.setItem('colorMode', colorMode.value)
   }
 
   const switchMode = () => {
     colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark'
+    localStorage.setItem('colorMode', colorMode.value)
   }
 
   const setSytemMode = () => {
     onMounted(() => {
-      const windowColorMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const windowColorMode = localStorage.getItem('colorMode') ? localStorage.getItem('colorMode') === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
       if (windowColorMode) {
         colorMode.value = 'dark'
         useColorStore().setDarkTheme()
