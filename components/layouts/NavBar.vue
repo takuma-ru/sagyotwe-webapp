@@ -17,7 +17,8 @@
           :icon="link.icon"
           :to="link.path"
           :icon-props="{
-            fill: route.fullPath === link.path ? true : false
+            fill: route.fullPath === link.path ? true : false,
+            color: route.fullPath === link.path ? color.theme.text : color.red.default
           }"
         />
       </div>
@@ -26,6 +27,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useColorStore } from '~~/store/colorStore'
 import { useDeviceStatusStore } from '~~/store/deviceStatusStore'
 
 /* -- type, interface -- */
@@ -39,6 +41,10 @@ interface ILinks {
 const {
   isMobile
 } = useDeviceStatusStore()
+
+const {
+  color
+} = useColorStore()
 
 /* -- variable(ref, reactive, computed) -- */
 const route = useRoute()

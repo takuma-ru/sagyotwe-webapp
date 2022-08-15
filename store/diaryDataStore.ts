@@ -22,9 +22,27 @@ export const useDiaryDataStore = () => {
     }
   }))
 
+  /* -- getters -- */
+  /**
+   * 引数で指定したidのオブジェクトプロパティが日記データストアに存在するかのフラグ配列を返す
+   * @param docId id（yXXXXmXXdXX）
+   * @returns [yXXXXが存在するか, mXXが存在するか, dXXが存在するか]
+   */
+  const isEmptyData = (docId: string) => computed(() => {
+    if (!(docId.substring(0, 5) in diaryData.value)) {
+      return [false, false, false]
+    } else if (!(docId.substring(5, 8) in diaryData.value[docId.substring(0, 5)])) {
+      return [true, false, false]
+    } else if (!(docId.substring(8, 11) in diaryData.value[docId.substring(0, 5)][docId.substring(5, 8)])) {
+      return [true, true, false]
+    } else {
+      return [true, true, true]
+    }
+  })
+
   /* -- mutation -- */
-  const setDiaryData = (parms: any) => {
-    diaryData.value = parms
+  const setDiaryData = (data: IDate) => {
+    diaryData.value = data
   }
 
   const addDiaryData = ({ y, m, d, data }: {y: string; m: string, d: string, data: IDate}) => {
@@ -134,10 +152,13 @@ export const useDiaryDataStore = () => {
   return {
     diaryData: readonly(diaryData),
 
+    isEmptyData,
+
     setDiaryData,
     addDiaryData,
     deleteDiaryData,
     initDiaryData,
+
     getDiaryDataThisYearThisMonth
   }
 }

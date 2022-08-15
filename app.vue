@@ -41,7 +41,6 @@ const {
 } = useColorModeStore()
 
 const {
-  isMobile,
   getThisDisplaySize,
   isMobileMixin
 } = useDeviceStatusStore()
@@ -96,7 +95,9 @@ html {
 
 body {
   margin: 0px;
+
   background-color: v-bind('color.theme.background');
+  overscroll-behavior-y: none;
 }
 
 h1, h2, h3, h4, h5 {

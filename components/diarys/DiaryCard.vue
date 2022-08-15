@@ -8,7 +8,7 @@
       icon="chevron_right"
     />
     <div class="buttons">
-      <span class="sub-text">{{ diaryData[props.docId.substring(0, 5)][props.docId.substring(5, 8)][props.docId.substring(8, 11)] !== undefined ? '既に書いています' : 'まだ書いていません' }}</span>
+      <span class="sub-text">{{ !!isEmptyData(docId).value[2] ? '既に書いています' : 'まだ書いていません' }}</span>
     </div>
   </div>
 </template>
@@ -27,7 +27,8 @@ const props = defineProps<IProps>()
 
 /* -- store -- */
 const {
-  diaryData
+  diaryData,
+  isEmptyData
 } = useDiaryDataStore()
 const {
   color
@@ -39,10 +40,6 @@ const {
 
 /* -- variable(ref, reactive, computed) -- */
 const today = new Date()
-
-/* const isEmptyData = computed(() => {
-  return diaryData[props.docId.substring(0, 5)][props.docId.substring(5, 8)][props.docId.substring(8, 11)] !== undefined
-}) */
 
 const docDate = computed(() => {
   return `${props.docId.substring(1, 5)} / ${props.docId.substring(6, 8)} / ${props.docId.substring(9, 11)}`
@@ -70,7 +67,7 @@ const docDate = computed(() => {
   border-radius: 0.8rem;
 
   .buttons {
-    
+
   }
 }
 </style>

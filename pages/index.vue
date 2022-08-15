@@ -17,6 +17,7 @@
 
 <script lang="ts" setup>
 import { useDiaryDataStore } from '~/store/diaryDataStore'
+import { useDeviceStatusStore } from '~~/store/deviceStatusStore'
 
 useMeta({
   title: 'Home｜さぎょツイ'
@@ -28,6 +29,10 @@ useMeta({
 const {
   diaryData
 } = useDiaryDataStore()
+
+const {
+  isMobileMixin
+} = useDeviceStatusStore()
 
 /* -- variable(ref, reactive, computed) -- */
 /* -- function -- */
@@ -59,7 +64,7 @@ const click = () => {
 
     display: grid;
     grid-template-columns: 1fr;
-    justify-items: start;
+    justify-items: v-bind('isMobileMixin("center", "start")');
     align-items: center;
   }
 }
