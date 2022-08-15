@@ -24,7 +24,7 @@ export const useDiaryDataStore = () => {
    * @param docId id（yXXXXmXXdXX）
    * @returns [yXXXXが存在するか, mXXが存在するか, dXXが存在するか]
    */
-  const isEmptyData = (docId: string) => computed(() => {
+  const isData = (docId: string) => computed(() => {
     if (!(docId.substring(0, 5) in diaryData.value)) {
       return [false, false, false]
     } else if (!(docId.substring(5, 8) in diaryData.value[docId.substring(0, 5)])) {
@@ -104,17 +104,17 @@ export const useDiaryDataStore = () => {
           // 新たな日記データの場合
           if (change.type === 'added') {
             // "年"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
-            if (!isEmptyData(data.id).value[0]) {
+            if (!isData(data.id).value[0]) {
               diaryData.value[yearID] = {}
             }
 
             // "月"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
-            if (!isEmptyData(data.id).value[1]) {
+            if (!isData(data.id).value[1]) {
               diaryData.value[yearID][monthID] = {}
             }
 
             // 日記データを取得できなかった場合、日記データストアにデータを追加する
-            if (!isEmptyData(data.id).value[2]) {
+            if (!isData(data.id).value[2]) {
               addDiaryData({
                 y: yearID,
                 m: monthID,
@@ -130,17 +130,17 @@ export const useDiaryDataStore = () => {
             deleteDiaryData(change.doc.data().id)
 
             // "年"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
-            if (!isEmptyData(data.id).value[0]) {
+            if (!isData(data.id).value[0]) {
               diaryData.value[yearID] = {}
             }
 
             // "月"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
-            if (!isEmptyData(data.id).value[1]) {
+            if (!isData(data.id).value[1]) {
               diaryData.value[yearID][monthID] = {}
             }
 
             // もう一度追加する処理
-            if (!isEmptyData(data.id).value[2]) {
+            if (!isData(data.id).value[2]) {
               addDiaryData({
                 y: yearID,
                 m: monthID,
@@ -169,7 +169,7 @@ export const useDiaryDataStore = () => {
   return {
     diaryData: readonly(diaryData),
 
-    isEmptyData,
+    isData,
 
     setDiaryData,
     addDiaryData,

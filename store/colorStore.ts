@@ -153,7 +153,7 @@ export const useColorStore = () => {
   const setDarkTheme = () => {
     color.value.theme = {
       text: color.value.white.darken[2],
-      subText: color.value.white.darken[1],
+      subText: color.value.black.lighten[2],
       background: color.value.black.darken[2],
       lighten: {
         1: color.value.white.lighten[1],

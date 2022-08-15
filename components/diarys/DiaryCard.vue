@@ -13,19 +13,19 @@
       {{ docDate }}
     </h3>
     <span class="sub-text status">
-      {{ !!isEmptyData(docId).value[2] ? '記録済み！' : '未記録' }}
+      {{ !!isData(docId).value[2] ? '記録済み！' : '未記録' }}
     </span>
     <div class="buttons">
       <Button
         v-if="queryDocId === docId"
-        icon="first_page"
+        icon="close"
         :color="color.red.lighten[1]"
         @click="closeDetail()"
       >
         閉じる
       </Button>
       <Button
-        v-else-if="!!isEmptyData(docId).value[2]"
+        v-else-if="!!isData(docId).value[2]"
         icon="read_more"
         @click="openDetail()"
       >
@@ -59,7 +59,7 @@ const props = defineProps<IProps>()
 /* -- store -- */
 const {
   diaryData,
-  isEmptyData
+  isData
 } = useDiaryDataStore()
 const {
   color
@@ -109,7 +109,7 @@ const closeDetail = () => {
   }
 
   .status {
-    color: v-bind('!!isEmptyData(docId).value[2] ? color.blue.default : color.yellow.default');
+    color: v-bind('!!isData(docId).value[2] ? color.blue.default : color.yellow.default');
   }
 
   .buttons {
