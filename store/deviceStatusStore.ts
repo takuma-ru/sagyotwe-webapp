@@ -33,16 +33,28 @@ export const useDeviceStatusStore = () => {
    */
   const getThisDisplaySize = () => {
     onMounted(() => {
-      // mobileの場合
-      if (window.matchMedia('(min-width: 480px)').matches) {
+      const get = () => {
+        // mobileの場合
         updateDisplaySize('mobile')
+
+        // laptopの場合
+        if (window.matchMedia('(min-width: 1024px)').matches) {
+          updateDisplaySize('laptop')
+        }
       }
-      if (window.matchMedia('(min-width: 1024px)').matches) {
-        updateDisplaySize('laptop')
-      }
+
+      window.addEventListener('resize', get)
+
+      get()
     })
   }
 
+  /**
+   * css用mixin. ディスプレイサイズによってcssの値を変更する必要がある際に使用する
+   * @param mobilePrams モバイル端末時のパラメータ
+   * @param laptopPrams ラップトップ時のパラメータ
+   * @returns ディスプレイサイズに適応したパラメータの値
+   */
   const isMobileMixin = (mobilePrams: string, laptopPrams: string) => {
     return isMobile() ? mobilePrams : laptopPrams
   }
