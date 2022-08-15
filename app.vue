@@ -7,6 +7,7 @@
     <div id="contents">
       <NuxtPage />
     </div>
+    <Detail :doc-id="queryDocId" />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import { useDeviceStatusStore } from './store/deviceStatusStore'
 import AppBar from './components/layouts/AppBar.vue'
 import NavBar from './components/layouts/NavBar.vue'
 import BottomNav from './components/layouts/BottomNav.vue'
+import Detail from './components/layouts/Detail.vue'
 
 registerSW()
 
@@ -30,6 +32,9 @@ registerSW()
 /* -- function -- */
 /* -- watch -- */
 /* -- life cycle -- */
+
+/* -- props, emit -- */
+const route = useRoute()
 
 /* -- store -- */
 const {
@@ -51,6 +56,11 @@ setSytemMode()
 
 getThisDisplaySize()
 
+/* -- variable(ref, reactive, computed) -- */
+const queryDocId = computed(() => {
+  return route.query.docId as string
+})
+
 </script>
 
 <style lang="scss">
@@ -65,7 +75,7 @@ getThisDisplaySize()
 #app {
   display: grid;
   grid-template-rows: v-bind('isMobileMixin("64px calc(100vh - 64px - 56px) 56px", "64px 1fr")');
-  grid-template-columns: v-bind('isMobileMixin("0px 1fr", "64px 1fr")');
+  grid-template-columns: v-bind('isMobileMixin("0px 1fr", "64px 1fr 1fr")');
 
   width: 100vw;
   height: 100vh;
@@ -76,7 +86,7 @@ getThisDisplaySize()
 
   #app-bar {
     grid-row: 1;
-    grid-column: 2;
+    grid-column: 2/4;
   }
 
   #nav-bar {
@@ -91,9 +101,14 @@ getThisDisplaySize()
 
   #contents {
     grid-row: 2;
-    grid-column: 2;
+    grid-column: v-bind('queryDocId ? "2" : "2/4"');
 
     margin: 16px;
+  }
+
+  #detail {
+    grid-row: 2;
+    grid-column: 3;
   }
 }
 

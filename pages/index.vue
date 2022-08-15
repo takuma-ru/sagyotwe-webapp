@@ -15,6 +15,7 @@
           v-for="docId in weekDocIds"
           :key="docId"
           :doc-id="docId"
+          :query-doc-id="queryDocId"
         />
       </div>
     </div>
@@ -29,6 +30,8 @@ import { useDeviceStatusStore } from '~~/store/deviceStatusStore'
 useMeta({
   title: 'Home｜さぎょツイ'
 })
+
+const route = useRoute()
 
 /* -- type, interface -- */
 /* -- props, emit -- */
@@ -46,7 +49,6 @@ const {
 } = useColorStore()
 
 /* -- variable(ref, reactive, computed) -- */
-
 const weekDocIds = computed(() => {
   const array: Array<string> = []
   for (let transitTime = -2; transitTime < 3; transitTime++) {
@@ -58,10 +60,11 @@ const weekDocIds = computed(() => {
   return array
 })
 
+const queryDocId = computed(() => {
+  return route.query.docId as string
+})
+
 /* -- function -- */
-const click = () => {
-  console.log('open')
-}
 
 /* -- watch -- */
 /* -- life cycle -- */

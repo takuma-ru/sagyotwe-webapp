@@ -12,7 +12,7 @@
         :icon="link.icon"
         :to="link.path"
         :icon-props="{
-          fill: route.fullPath === link.path ? true : false
+          fill: route.path === link.path ? true : false
         }"
       />
     </div>

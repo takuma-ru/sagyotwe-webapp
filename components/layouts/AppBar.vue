@@ -27,7 +27,7 @@ import SignInButton from '../utils/SignInButton.vue'
     display: flex;
     align-items: center;
 
-    margin-right: 2em;
+    margin-right: 1em;
   }
 }
 </style>

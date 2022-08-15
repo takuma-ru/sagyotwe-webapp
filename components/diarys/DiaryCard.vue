@@ -17,9 +17,27 @@
     </span>
     <div class="buttons">
       <Button
+        v-if="queryDocId === docId"
+        icon="first_page"
+        :color="color.red.lighten[1]"
+        @click="closeDetail()"
+      >
+        閉じる
+      </Button>
+      <Button
+        v-else-if="!!isEmptyData(docId).value[2]"
         icon="read_more"
+        @click="openDetail()"
       >
         詳細を見る
+      </Button>
+      <Button
+        v-else
+        icon="draw"
+        :color="color.yellow.default"
+        @click="openDetail()"
+      >
+        日記を書く
       </Button>
     </div>
   </div>
@@ -33,6 +51,7 @@ import { useColorModeStore } from '~~/store/colorModeStore'
 /* -- type, interface -- */
 interface IProps {
   docId: string
+  queryDocId: string
 }
 /* -- props, emit -- */
 const props = defineProps<IProps>()
@@ -56,6 +75,13 @@ const docDate = computed(() => {
 })
 
 /* -- function -- */
+const openDetail = () => {
+  navigateTo(`?docId=${props.docId}`)
+}
+
+const closeDetail = () => {
+  navigateTo('?')
+}
 
 /* -- watch -- */
 /* -- life cycle -- */

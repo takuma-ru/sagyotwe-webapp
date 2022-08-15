@@ -17,8 +17,8 @@
           :icon="link.icon"
           :to="link.path"
           :icon-props="{
-            fill: route.fullPath === link.path ? true : false,
-            color: route.fullPath === link.path ? color.theme.text : color.red.default
+            fill: route.path === link.path ? true : false,
+            color: route.path === link.path ? color.theme.text : color.red.default
           }"
         />
       </div>
