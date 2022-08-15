@@ -36,16 +36,22 @@ export const useDeviceStatusStore = () => {
       // mobileの場合
       if (window.matchMedia('(min-width: 480px)').matches) {
         updateDisplaySize('mobile')
-      } else if (window.matchMedia('(min-width: 1024px)').matches) {
+      }
+      if (window.matchMedia('(min-width: 1024px)').matches) {
         updateDisplaySize('laptop')
       }
     })
+  }
+
+  const isMobileMixin = (mobilePrams: string, laptopPrams: string) => {
+    return isMobile() ? mobilePrams : laptopPrams
   }
 
   return {
     displaySize: readonly(displaySize),
     isMobile,
     updateDisplaySize,
-    getThisDisplaySize
+    getThisDisplaySize,
+    isMobileMixin
   }
 }

@@ -3,9 +3,6 @@
     <div class="title">
       <img src="" alt="">
     </div>
-    <div class="links">
-
-    </div>
     <div class="buttons">
       <SignInButton style="margin-right: 1rem" />
       <ColorModeButton />
@@ -22,7 +19,7 @@ import SignInButton from '../utils/SignInButton.vue'
 #app-bar {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: end;
   align-items: center;
 

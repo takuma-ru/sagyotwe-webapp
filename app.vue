@@ -3,6 +3,7 @@
     <Meta name="theme-color" :content="color.theme.background" />
     <AppBar />
     <NavBar />
+    <BottomNav />
     <div id="contents">
       <NuxtPage />
     </div>
@@ -15,8 +16,10 @@ import { useColorStore } from './store/colorStore'
 import { useColorModeStore } from './store/colorModeStore'
 import { useUserProfileStore } from './store/userProfileStore'
 import { useDiaryDataStore } from './store/diaryDataStore'
+import { useDeviceStatusStore } from './store/deviceStatusStore'
 import AppBar from './components/layouts/AppBar.vue'
 import NavBar from './components/layouts/NavBar.vue'
+import BottomNav from './components/layouts/BottomNav.vue'
 
 registerSW()
 
@@ -37,17 +40,25 @@ const {
   setSytemMode
 } = useColorModeStore()
 
+const {
+  isMobile,
+  getThisDisplaySize,
+  isMobileMixin
+} = useDeviceStatusStore()
+
 useDiaryDataStore()
 useUserProfileStore()
 setSytemMode()
+
+getThisDisplaySize()
 
 </script>
 
 <style lang="scss">
 #app {
   display: grid;
-  grid-template-rows: 64px 1fr;
-  grid-template-columns: 64px 1fr;
+  grid-template-rows: v-bind('isMobileMixin("64px 1fr 64px", "64px 1fr")');
+  grid-template-columns: v-bind('isMobileMixin("0px 1fr", "64px 1fr")');
 
   width: 100vw;
   height: 100vh;
@@ -63,6 +74,11 @@ setSytemMode()
 
   #nav-bar {
     grid-row: 1/3;
+    grid-column: 1;
+  }
+
+  #bottom-nav-bar {
+    grid-row: 3;
     grid-column: 1;
   }
 

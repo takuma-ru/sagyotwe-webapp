@@ -1,26 +1,20 @@
 <template>
   <div
-    v-if="!isMobile()"
-    id="nav-bar"
+    v-if="isMobile()"
+    id="bottom-nav-bar"
   >
-    <div />
-    <div class="buttons">
-      <div
-        v-for="link in links"
-        :key="link.name"
-        :style="{
-          marginBottom: '1rem'
+    <div
+      v-for="link in links"
+      :key="link.name"
+    >
+      <Button
+        is-icon
+        :icon="link.icon"
+        :to="link.path"
+        :icon-props="{
+          fill: route.fullPath === link.path ? true : false
         }"
-      >
-        <Button
-          is-icon
-          :icon="link.icon"
-          :to="link.path"
-          :icon-props="{
-            fill: route.fullPath === link.path ? true : false
-          }"
-        />
-      </div>
+      />
     </div>
   </div>
 </template>
@@ -45,14 +39,14 @@ const route = useRoute()
 
 const links = ref<ILinks[]>([
   {
-    name: 'top',
-    icon: 'home',
-    path: '/'
-  },
-  {
     name: 'calender',
     icon: 'calendar_month',
     path: '/calendar'
+  },
+  {
+    name: 'top',
+    icon: 'home',
+    path: '/'
   },
   {
     name: 'setting',
@@ -67,21 +61,12 @@ const links = ref<ILinks[]>([
 </script>
 
 <style lang="scss" scoped>
-#nav-bar {
-  display: grid;
-  grid-template-rows: 64px 1fr;
-  justify-content: center;
+#bottom-nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-  width: calc(100% - 16px);
-  height: calc(100% - 16px);
-
-  margin: 8px;
-
-  .buttons {
-    display: flex;
-    flex-flow: column;
-
-    margin-top: 16px;
-  }
+  width: 100vw;
+  height: 64px;
 }
 </style>

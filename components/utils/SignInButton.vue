@@ -67,6 +67,9 @@ const auth = useAuth()
     justify-content: center;
     align-items: center;
     vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     .logo {
       min-width: 24px;
