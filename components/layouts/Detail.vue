@@ -70,9 +70,6 @@ import { useColorModeStore } from '~~/store/colorModeStore'
 import { useColorStore } from '~~/store/colorStore'
 import { useDeviceStatusStore } from '~~/store/deviceStatusStore'
 import { useDiaryDataStore } from '~~/store/diaryDataStore'
-import { IDate } from '~~/types/store/IDiaryDataStore'
-
-const route = useRoute()
 
 /* -- type, interface -- */
 interface IProps {
