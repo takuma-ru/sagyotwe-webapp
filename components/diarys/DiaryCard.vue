@@ -1,14 +1,26 @@
 <template>
   <div id="diary-card">
     <h3>
+      <Icon
+        :wght="600"
+        :color="color.theme.subText"
+        :style="{
+          marginRight: '0.2em'
+        }"
+      >
+        event
+      </Icon>
       {{ docDate }}
     </h3>
-    <Button
-      is-icon
-      icon="chevron_right"
-    />
+    <span class="sub-text status">
+      {{ !!isEmptyData(docId).value[2] ? '記録済み！' : '未記録' }}
+    </span>
     <div class="buttons">
-      <span class="sub-text">{{ !!isEmptyData(docId).value[2] ? '既に書いています' : 'まだ書いていません' }}</span>
+      <Button
+        icon="read_more"
+      >
+        詳細を見る
+      </Button>
     </div>
   </div>
 </template>
@@ -39,8 +51,6 @@ const {
 } = useColorModeStore()
 
 /* -- variable(ref, reactive, computed) -- */
-const today = new Date()
-
 const docDate = computed(() => {
   return `${props.docId.substring(1, 5)} / ${props.docId.substring(6, 8)} / ${props.docId.substring(9, 11)}`
 })
@@ -62,12 +72,27 @@ const docDate = computed(() => {
   width: min(calc(100% - 32px - 4px), calc(400px - 32px - 4px));
 
   padding: 16px;
+  margin-bottom: 1em;
 
   background-color: v-bind('colorMode === "dark" ? color.black.darken[1] : color.white.default');
   border-radius: 0.8rem;
 
-  .buttons {
+  h3 {
+    display: inline-flex;
+    align-items: center;
+  }
 
+  .status {
+    color: v-bind('!!isEmptyData(docId).value[2] ? color.blue.default : color.yellow.default');
+  }
+
+  .buttons {
+    grid-column: 1/3;
+
+    display: flex;
+    justify-content: end;
+
+    margin-top: 1em;
   }
 }
 </style>
