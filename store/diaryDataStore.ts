@@ -16,11 +16,7 @@ export const useDiaryDataStore = () => {
   /**
    * 日記データストア
    */
-  const diaryData = useState<IDiaryData>('diaryData', () => ({
-    y2022: {
-      m08: {}
-    }
-  }))
+  const diaryData = useState<IDiaryData>('diaryData', () => ({}))
 
   /* -- getters -- */
   /**
@@ -46,6 +42,7 @@ export const useDiaryDataStore = () => {
   }
 
   const addDiaryData = ({ y, m, d, data }: {y: string; m: string, d: string, data: IDate}) => {
+    console.log(y, m, d, data)
     diaryData.value[y][m][d] = data
   }
 
@@ -62,11 +59,7 @@ export const useDiaryDataStore = () => {
   }
 
   const initDiaryData = () => {
-    diaryData.value = {
-      y2022: {
-        m08: {}
-      }
-    }
+    diaryData.value = {}
   }
 
   /* -- action -- */
@@ -94,8 +87,6 @@ export const useDiaryDataStore = () => {
         snapshot.docChanges().forEach((change) => {
           const data = change.doc.data() as IDate
 
-          const dayId = change.doc.id
-
           // 取得データを整形
           const gotDiaryData: IDate = {
             comment: data?.comment,
@@ -104,14 +95,31 @@ export const useDiaryDataStore = () => {
             isTweeted: data.isTweeted
           }
 
+          // y○○○○
+          const yearID = gotDiaryData.id.substring(0, 5)
+          // m○○
+          const monthID = gotDiaryData.id.substring(5, 8)
+          // d○○
+          const dayID = gotDiaryData.id.substring(8, 11)
+
           // 新たな日記データの場合
           if (change.type === 'added') {
+            // "年"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
+            if (!isEmptyData(data.id).value[0]) {
+              diaryData.value[yearID] = {}
+            }
+
+            // "月"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
+            if (!isEmptyData(data.id).value[1]) {
+              diaryData.value[yearID][monthID] = {}
+            }
+
             // 日記データを取得できなかった場合、日記データストアにデータを追加する
-            if (!diaryData.value[thisYearID][thisMonthID][dayId]) {
+            if (!isEmptyData(data.id).value[2]) {
               addDiaryData({
-                y: thisYearID,
-                m: thisMonthID,
-                d: dayId,
+                y: yearID,
+                m: monthID,
+                d: dayID,
                 data: gotDiaryData
               })
             }
@@ -122,12 +130,22 @@ export const useDiaryDataStore = () => {
             // 一度既存データ削除
             deleteDiaryData(change.doc.data().id)
 
+            // "年"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
+            if (!isEmptyData(data.id).value[0]) {
+              diaryData.value[yearID] = {}
+            }
+
+            // "月"のオブジェクトが取得できなかった場合、日記データストアにオブジェクトを追加する
+            if (!isEmptyData(data.id).value[1]) {
+              diaryData.value[yearID][monthID] = {}
+            }
+
             // もう一度追加する処理
-            if (!diaryData.value[thisYearID][thisMonthID][dayId]) {
+            if (!isEmptyData(data.id).value[2]) {
               addDiaryData({
-                y: thisYearID,
-                m: thisMonthID,
-                d: dayId,
+                y: yearID,
+                m: monthID,
+                d: dayID,
                 data: gotDiaryData
               })
             }
@@ -136,7 +154,7 @@ export const useDiaryDataStore = () => {
           // 日記データが削除された場合
           if (change.type === 'removed') {
             // 日記データ削除
-            deleteDiaryData(change.doc.data().id)
+            deleteDiaryData(gotDiaryData.id)
           }
 
           // ローカル or サーバーから取得したデータかどうかをコンソールに表示

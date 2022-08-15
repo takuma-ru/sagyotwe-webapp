@@ -5,6 +5,7 @@
     <NavBar />
     <BottomNav />
     <div id="contents">
+      {{ useDiaryDataStore().diaryData }}
       <NuxtPage />
     </div>
   </div>
