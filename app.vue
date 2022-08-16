@@ -80,9 +80,10 @@ const queryDocId = computed(() => {
   width: 100vw;
   height: 100vh;
 
-  overflow: auto;
   background-color: v-bind('color.theme.background');
   color: v-bind('color.theme.text');
+  overflow-y: auto;
+  overflow-x: hidden;
 
   #app-bar {
     grid-row: 1;
@@ -121,7 +122,6 @@ body {
 
   background-color: v-bind('color.theme.background');
   overscroll-behavior-y: none;
-  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5 {
