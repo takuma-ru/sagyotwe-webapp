@@ -1,19 +1,17 @@
 <template>
-  <no-ssr>
-    <swipe-modal
-      v-model="isModalComputed"
-      :dark="colorMode === 'dark'"
-      contents-height="50vh"
-      border-top-radius="0.8em"
-      :contents-color="color.white.default"
-      :dark-contents-color="color.black.darken[1]"
-      @close="closeModal()"
-    >
-      <div class="contents">
-        {{ docId }}
-      </div>
-    </swipe-modal>
-  </no-ssr>
+  <swipe-modal
+    v-model="isModalComputed"
+    :dark="colorMode === 'dark'"
+    contents-height="50vh"
+    border-top-radius="0.8em"
+    :contents-color="color.white.default"
+    :dark-contents-color="color.black.darken[1]"
+    @close="closeModal()"
+  >
+    <div class="contents">
+      {{ docId }}
+    </div>
+  </swipe-modal>
 </template>
 
 <script lang="ts" setup>
