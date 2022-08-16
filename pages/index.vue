@@ -36,9 +36,7 @@ const route = useRoute()
 /* -- type, interface -- */
 /* -- props, emit -- */
 /* -- store -- */
-const {
-  diaryData
-} = useDiaryDataStore()
+useDiaryDataStore()
 
 const {
   isMobileMixin
@@ -49,6 +47,7 @@ const {
 } = useColorStore()
 
 /* -- variable(ref, reactive, computed) -- */
+
 const weekDocIds = computed(() => {
   const array: Array<string> = []
   for (let transitTime = -2; transitTime < 3; transitTime++) {

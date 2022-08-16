@@ -8,6 +8,7 @@
       <NuxtPage />
     </div>
     <Detail :doc-id="queryDocId" />
+    <DetailSwipeModal :doc-id="queryDocId" />
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import AppBar from './components/layouts/AppBar.vue'
 import NavBar from './components/layouts/NavBar.vue'
 import BottomNav from './components/layouts/BottomNav.vue'
 import Detail from './components/layouts/Detail.vue'
+import DetailSwipeModal from './components/layouts/DetailSwipeModal.vue'
 
 registerSW()
 
@@ -47,7 +49,8 @@ const {
 
 const {
   getThisDisplaySize,
-  isMobileMixin
+  isMobileMixin,
+  isMobile
 } = useDeviceStatusStore()
 
 useDiaryDataStore()
@@ -60,6 +63,8 @@ getThisDisplaySize()
 const queryDocId = computed(() => {
   return route.query.docId as string
 })
+
+/* -- function -- */
 
 </script>
 
@@ -102,7 +107,7 @@ const queryDocId = computed(() => {
 
   #contents {
     grid-row: 2;
-    grid-column: v-bind('queryDocId ? "2" : "2/4"');
+    grid-column: v-bind('queryDocId && !isMobile() ? "2" : "2/4"');
 
     margin: 16px;
   }

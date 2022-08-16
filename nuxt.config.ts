@@ -5,6 +5,10 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineNuxtConfig({
   ssr: false,
 
+  plugins: [
+    { src: '/plugins/vue-swipe-modal.ts', mode: 'client' }
+  ],
+
   app: {
     head: {
       title: 'さぎょツイ',

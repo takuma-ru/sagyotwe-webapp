@@ -101,7 +101,7 @@ const closeDetail = () => {
   margin-bottom: 1em;
 
   background-color: v-bind('colorMode === "dark" ? color.black.darken[1] : color.white.default');
-  border-radius: 0.8rem;
+  border-radius: 0.8em;
 
   h3 {
     display: inline-flex;
