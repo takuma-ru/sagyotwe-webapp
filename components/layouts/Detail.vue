@@ -22,11 +22,68 @@
           の作業日記
         </h2>
         <hr>
+        <h4>
+          <Icon
+            size="16px"
+            :wght="600"
+            :color="color.theme.subText"
+            :style="{
+              marginRight: '0.5em'
+            }"
+          >
+            comment
+          </Icon>
+          コメント
+        </h4>
         <p>
           {{ diaryData[thisYear][thisMonth][thisDay].comment }}
         </p>
-
-        <ul>
+        <h4>
+          <Icon
+            size="16px"
+            :wght="600"
+            :color="color.theme.subText"
+            :style="{
+              marginRight: '0.5em'
+            }"
+          >
+            list
+          </Icon>
+          作業内容
+        </h4>
+        <div class="diary-list">
+          <div
+            v-for="diary in diaryData[thisYear][thisMonth][thisDay].diary"
+            :key="diary.title"
+            class="title"
+          >
+            <div class="top">
+              <Icon
+                fill
+                :wght="600"
+                size="24px"
+                :color="color.theme.subText"
+                :style="{
+                  marginRight: '0.5em'
+                }"
+              >
+                check_box
+              </Icon>
+              <span>
+                {{ diary.title }}
+              </span>
+            </div>
+            <div class="detail">
+              <li
+                v-for="detail in diary.details"
+                :key="detail"
+              >
+                {{ detail }}
+              </li>
+            </div>
+          </div>
+        </div>
+        <!-- <ul>
           <li
             v-for="diary in diaryData[thisYear][thisMonth][thisDay].diary"
             :key="diary.title"
@@ -41,7 +98,7 @@
               </li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
       </div>
       <div
         v-else
@@ -130,8 +187,16 @@ const thisDay = computed(() => {
     color: v-bind('color.theme.subText');
   }
 
+  h4 {
+    margin-bottom: 1em;
+  }
+
   ul {
     padding-inline-start: 2em;
+  }
+
+  li {
+    margin: 0.5em 0em;
   }
 
   .data {
@@ -146,6 +211,29 @@ const thisDay = computed(() => {
 
     border-radius: 0.8em;
     background-color: v-bind('colorMode === "dark" ? color.black.darken[1] : color.white.default');
+
+    .diary-list {
+      display: flex;
+      flex-flow: column;
+
+      .title {
+        display: flex;
+        flex-flow: column;
+        grid-template-rows: auto auto;
+        align-items: center;
+
+        padding-bottom: 2em;
+
+        .top {
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .detail {
+
+        }
+      }
+    }
   }
 
   .empty {

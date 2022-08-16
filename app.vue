@@ -135,6 +135,11 @@ h1, h2, h3, h4, h5 {
   margin: 0px;
 }
 
+p {
+  margin-top: 0px;
+  margin-bottom: 1em;
+}
+
 .sub-text {
   color: v-bind('color.theme.subText');
 }
