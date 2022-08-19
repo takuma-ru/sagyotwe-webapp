@@ -1838,13 +1838,13 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
-"@takuma-ru/vue-swipe-modal@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@takuma-ru/vue-swipe-modal/-/vue-swipe-modal-4.0.3.tgz#374af8b49f16087a4b632bafe00749674760bc6a"
-  integrity sha512-lyViCYD8bGJAnclcBHZ8Uj7gU/sMoVIED2TRIEpgL0Iu8XEsQ+Lj3Q2R9GbdgrzJkDJsWWCbphSS7EKu87YOFQ==
+"@takuma-ru/vue-swipe-modal@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@takuma-ru/vue-swipe-modal/-/vue-swipe-modal-4.0.4.tgz#46b894a4195ffff6b519067ba9996e8994770e29"
+  integrity sha512-ISZeA5Mx8helfsDjEeBjouYZH7r7YOQP35S8oJA9AC+9I0rI593StLnrWlfktAaVldhOOk8EugAXqeu792/ggQ==
   dependencies:
     "@vueuse/core" "8.9.4"
-    vue-demi "^0.13.4"
+    vue-demi "^0.13.8"
 
 "@trysound/sax@0.2.0":
   version "0.2.0"
@@ -7222,10 +7222,15 @@ vue-bundle-renderer@^0.4.1:
   dependencies:
     ufo "^0.8.3"
 
-vue-demi@*, vue-demi@^0.13.4:
+vue-demi@*:
   version "0.13.7"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.7.tgz#5ae380b15c13be556ac4a0da0a48450c98a01d4b"
   integrity sha512-hbhlvpx1gFW3TB5HxJ0mNxyA9Jh5iQt409taOs6zkhpvfJ7YzLs1rsLufJmDsjH5PI1cOyfikY1fE/meyHfU5A==
+
+vue-demi@^0.13.8:
+  version "0.13.8"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.8.tgz#5c568fb3b4d8f848acc658dfccd3d875035b5653"
+  integrity sha512-Vy1zbZhCOdsmvGR6tJhAvO5vhP7eiS8xkbYQSoVa7o6KlIy3W8Rc53ED4qI4qpeRDjv3mLfXSEpYU6Yq4pgXRg==
 
 vue-eslint-parser@^8.0.1:
   version "8.3.0"
